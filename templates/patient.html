@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ElderGuard – Patient</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="patient state-safe" data-page="patient">
+  <header class="top">
+    <a class="brand" href="/patient">ElderGuard</a>
+    <nav>
+      <a href="/patient" aria-current="page">Patient</a>
+      <a href="/caregiver">Caregiver</a>
+      <a href="/history">History</a>
+    </nav>
+  </header>
+
+  <main class="patient-main">
+    <p id="notice" class="notice" role="status" hidden></p>
+
+    <!-- Normal view -->
+    <section id="view-safe">
+      <p class="hero-title">🟢 YOU ARE SAFE</p>
+      <dl class="facts">
+        <div><dt>Activity</dt><dd id="p-activity">–</dd></div>
+        <div><dt>Last movement</dt><dd id="p-last">–</dd></div>
+      </dl>
+    </section>
+    <section id="view-help">
+      <p class="lead">Need help?</p>
+      <button id="btn-emergency" class="btn btn-danger btn-xl">🆘 EMERGENCY</button>
+    </section>
+
+    <!-- Verification view: "Are you okay?" countdown -->
+    <section id="view-verify" role="alertdialog" aria-live="assertive" hidden>
+      <p class="hero-title">⚠️ ARE YOU OKAY?</p>
+      <p id="v-text" class="lead"></p>
+      <div id="v-count" class="count" aria-label="Seconds left">10</div>
+      <div class="btn-row">
+        <button id="btn-ok" class="btn btn-ok btn-xl">I'M OK</button>
+        <button id="btn-help" class="btn btn-danger btn-xl">NEED HELP</button>
+      </div>
+    </section>
+
+    <!-- Caregiver has been alerted -->
+    <section id="view-active" role="alert" hidden>
+      <p class="hero-title">🔴 HELP IS ON THE WAY</p>
+      <p id="a-text" class="lead"></p>
+      <button id="btn-ok2" class="btn btn-ok btn-xl">I'M OK – CANCEL ALERT</button>
+    </section>
+
+    <footer class="privacy">
+      <button id="voice-toggle" class="pill" type="button">🎤 Voice help: starting…</button>
+      <p>Video is processed locally for real-time detection and continuous footage is not stored.</p>
+    </footer>
+  </main>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

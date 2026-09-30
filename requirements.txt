@@ -1,0 +1,4 @@
+flask>=3.0
+mediapipe==0.10.30            # needs Python 3.9 - 3.12
+opencv-contrib-python==4.10.0.84   # OpenCV (the build MediaPipe depends on)
+numpy<2

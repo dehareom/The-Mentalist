@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ElderGuard – Event History</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body data-page="history">
+  <header class="top">
+    <a class="brand" href="/caregiver">ElderGuard <small>Event History</small></a>
+    <nav>
+      <a href="/patient">Patient</a>
+      <a href="/caregiver">Caregiver</a>
+      <a href="/history" aria-current="page">History</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Event history</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Time</th><th>Event</th><th>Severity</th><th>Status</th><th>Resolution</th><th>Acknowledged</th></tr>
+          </thead>
+          <tbody id="h-rows"><tr><td colspan="6" class="muted">Loading…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

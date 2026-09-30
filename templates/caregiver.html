@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ElderGuard – Caregiver Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body data-page="caregiver">
+  <header class="top">
+    <a class="brand" href="/caregiver">ElderGuard <small>Caregiver Dashboard</small></a>
+    <nav>
+      <a href="/patient">Patient</a>
+      <a href="/caregiver" aria-current="page">Caregiver</a>
+      <a href="/history">History</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Emergency panel: only visible while an alert is open -->
+    <section id="c-alert" class="card alert-card" role="alert" hidden>
+      <h2 id="c-alert-title">🔴 EMERGENCY ALERT</h2>
+      <p id="c-alert-what" class="value"></p>
+      <p id="c-alert-time" class="muted"></p>
+      <p id="c-alert-note"></p>
+      <ol id="c-ladder" class="ladder">
+        <li id="lvl1" class="step"><b>LEVEL 1</b> Primary Caregiver <span id="lvl1-note"></span></li>
+        <li id="lvl2" class="step later"><b>LEVEL 2</b> Secondary Caregiver <span id="lvl2-note"></span></li>
+      </ol>
+      <button id="btn-ack" class="btn btn-danger btn-lg">ACKNOWLEDGE ALERT</button>
+    </section>
+
+    <section id="c-status-card" class="card status-card s-safe">
+      <p class="label">Patient</p>
+      <p id="c-patient" class="value">–</p>
+      <p class="label">Status</p>
+      <p id="c-status" class="big">🟢 SAFE</p>
+    </section>
+
+    <div class="grid">
+      <div class="card"><p class="label">Activity</p><p id="c-activity" class="value">–</p></div>
+      <div class="card"><p class="label">Last movement</p><p id="c-last" class="value">–</p></div>
+      <div class="card">
+        <p class="label">Monitoring</p>
+        <p id="c-monitoring" class="value">–</p>
+        <button id="btn-monitor" class="btn btn-quiet" type="button">Pause monitoring</button>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <section class="card">
+        <h3>AI pose view</h3>
+        <div class="video-wrap"><img id="video" src="/video_feed" alt="Live pose view"></div>
+        <label class="switch"><input type="checkbox" id="privacy-toggle" checked> Privacy mode (show pose only, not the camera image)</label>
+        <p class="muted small">Posture: <span id="c-posture">–</span>. Video is processed locally for real-time detection and continuous footage is not stored.</p>
+      </section>
+
+      <section class="card">
+        <h3>Recent events</h3>
+        <ul id="c-events" class="events"></ul>
+        <p><a href="/history">See full history</a></p>
+      </section>
+    </div>
+
+    <details class="card demo">
+      <summary>Demo tools</summary>
+      <p class="muted small">Use these if the camera or microphone misbehaves during the demo.</p>
+      <div class="btn-wrap">
+        <button class="btn btn-quiet" data-sim="FALL">Simulate fall</button>
+        <button class="btn btn-quiet" data-sim="VOICE_SOS">Simulate voice SOS</button>
+        <button class="btn btn-quiet" data-sim="INACTIVITY">Simulate inactivity</button>
+        <button class="btn btn-quiet" data-sim="MANUAL_SOS">Simulate emergency button</button>
+      </div>
+    </details>
+  </main>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
