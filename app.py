@@ -32,6 +32,7 @@ ALERT_TYPES = {
 }
 
 app = Flask(__name__)
+db.init_db()
 detector = FallDetector()
 inactivity = InactivityDetector(threshold_seconds=INACTIVITY_SECONDS)
 
@@ -305,7 +306,7 @@ def video_feed():
 
 
 if __name__ == "__main__":
-    db.init_db()
+    
     if AUTO_START_MONITORING:
         start_monitoring()
     threading.Thread(target=monitor_loop, daemon=True).start()
